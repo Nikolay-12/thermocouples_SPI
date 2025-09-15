@@ -1,0 +1,110 @@
+#include <SPI.h>
+
+#define Reg_num 2 // кол-во регистров
+#define Reg_pins Reg_num * 8 // Общее кол-во пинов на всех регистрах
+boolean Reg_state_outPins[Reg_pins]; // массив состояний пинов
+
+
+#define NANO_CLK_PIN 13 // Пин SCK термопар
+#define NANO_MISO_PIN 12 // ПИН MISO термопар
+#define HC595_DS_PIN 2 // Пин данных для сдвиговых регистов ("путешествующий ноль")
+#define HC595_STcp_PIN 3 // Пин для защелкивания выходов сдвиговых регистов
+#define HC595_SHcp_PIN 4 // Пин тактовых импульсов для сдвиговых регистов
+
+int THERMOCOUPLES_NUM = 8;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(13, OUTPUT);
+  pinMode(HC595_DS_PIN, OUTPUT);
+  pinMode(HC595_STcp_PIN, OUTPUT);
+  pinMode(HC595_SHcp_PIN, OUTPUT);
+
+  digitalWrite(HC595_DS_PIN, HIGH);
+  digitalWrite(HC595_STcp_PIN, HIGH);
+  digitalWrite(HC595_SHcp_PIN, LOW);
+  SPI.begin();
+  SPI.setClockDivider(SPI_CLOCK_DIV8);
+
+  for (int i = 1; i <= THERMOCOUPLES_NUM; i++) {
+    digitalWrite(HC595_DS_PIN, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(HC595_SHcp_PIN, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(HC595_SHcp_PIN, LOW);
+    delayMicroseconds(10);
+  }
+  digitalWrite(HC595_STcp_PIN, LOW);
+  delayMicroseconds(10);
+  digitalWrite(HC595_STcp_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(13, HIGH);
+}
+
+void loop() {
+  static String receivedData="";
+  if (Serial.available() > 0) {
+    receivedData = Serial.readString();
+    receivedData.trim();
+    //Serial.println("Received data: " + receivedData);
+    Serial.flush();
+  }
+  
+  if (receivedData=="read_one_point;") {
+    receivedData = "";
+  }
+  
+  if (receivedData=="read;") {
+    digitalWrite(HC595_DS_PIN, LOW);
+    delayMicroseconds(50);
+    digitalWrite(HC595_SHcp_PIN, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(HC595_SHcp_PIN, LOW);
+    delayMicroseconds(10);
+    digitalWrite(HC595_DS_PIN, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(HC595_STcp_PIN, LOW);
+    delayMicroseconds(10);
+    digitalWrite(HC595_STcp_PIN, HIGH);
+    delayMicroseconds(10);
+  
+    Serial.print(readCelsius()); Serial.print(" ");
+    delay(100);
+    
+    for (int i = 1; i <= THERMOCOUPLES_NUM - 1; i++) {
+      digitalWrite(HC595_SHcp_PIN, HIGH);
+      delayMicroseconds(10);
+      digitalWrite(HC595_SHcp_PIN, LOW);
+      delayMicroseconds(10);
+      digitalWrite(HC595_STcp_PIN, LOW);
+      delayMicroseconds(10);
+      digitalWrite(HC595_STcp_PIN, HIGH);
+      delayMicroseconds(10);
+  
+      Serial.print(readCelsius()); Serial.print(" ");
+      delay(100);
+    }
+    Serial.println(";"); 
+  }
+  
+  if (receivedData=="stop_reading;") {
+    //Serial.println("Reading stoped");
+    receivedData="";
+  }
+}
+
+double readCelsius() {
+    uint16_t v;
+    
+    v = SPI.transfer(0x00);
+    v <<= 8;
+    v |= SPI.transfer(0x00);
+    
+    if (v & 0x4) {
+        // uh oh, no thermocouple attached!
+        return NAN; 
+    }
+
+    v >>= 3;
+    return v*0.25;
+}
