@@ -9,5 +9,6 @@ namespace thermocouples
     void read_all_temp();
     void read_one_temp_point();
     void stop_reading_temp();
+    float get_temp_celsius(thermocouple_index);
 }
 
