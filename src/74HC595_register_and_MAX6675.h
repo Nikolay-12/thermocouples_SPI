@@ -16,7 +16,7 @@ namespace 74HC595
   void save_data_in_reg();
   void set_11111111_in_reg();
   void add_0_to_reg();
-  void shift_0_in_reg();
+  void shift_and_save_0_in_reg();
 }
 
 namespace MAX6675
