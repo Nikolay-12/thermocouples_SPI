@@ -10,7 +10,17 @@
 
 namespace 74HC595
 {
-  void set_bit_to_reg(HC595_DS_PIN, bit);
-  void shift_bit_in_reg(HC595_SHcp_PIN);
-  void save_data_in_reg(HC595_STcp_PIN);
+  void setting_up_reg_pins();
+  void set_bit_on_DS_pin(bit);
+  void shift_bit_in_reg();
+  void save_data_in_reg();
+  void set_11111111_in_reg();
+  void add_0_to_reg();
+  void shift_0_in_reg();
+}
+
+namespace MAX6675
+{
+  void setting_pin_values_for_SPI();
+  float readCelsius();
 }
