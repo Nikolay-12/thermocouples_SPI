@@ -18,20 +18,20 @@ void loop() {
   if (receivedData=="read_one_point;") {
     thermocouples::read_all_temp_once();
     for (size_t i = 0; i < THERMOCOUPLES_NUM; i++)
-        {
-          Serial.print(thermocouples::get_temp_celsius(i));
-        } 
-        delay(1000);
+    {
+      Serial.print(thermocouples::get_temp_celsius(i));
+    } 
+    delay(1000);
     receivedData = "";
   }
   
   if (receivedData=="read;") {
     thermocouples::read_all_temp();
     for (size_t i = 0; i < THERMOCOUPLES_NUM; i++)
-        {
-          Serial.print(thermocouples::get_temp_celsius(i));
-        } 
-        delay(1000);
+    {
+      Serial.print(thermocouples::get_temp_celsius(i));
+    } 
+    delay(1000);
   }
   
   if (receivedData=="stop_reading;") {
