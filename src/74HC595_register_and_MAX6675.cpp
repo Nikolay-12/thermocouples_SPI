@@ -55,7 +55,7 @@ namespace 74HC595
   }
 }
 
-namespace MAX6675
+namespace MAX6675_thermocouple
 {
   void setting_pin_values_for_SPI()
   {
