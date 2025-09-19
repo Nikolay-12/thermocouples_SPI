@@ -38,7 +38,7 @@ namespace thermocouples
     74HC595::set_bit_on_DS_pin(LOW);
     74HC595::shift_bit_in_reg();
     74HC595::set_bit_on_DS_pin(HIGH);
-    if (thermocouple_index == 0)
+    if (thermocouple_index - 1 == 0)
     {
       74HC595::save_data_in_reg();
       instances[0].temp_celsius = MAX6675::readCelsius();
