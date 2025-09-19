@@ -19,7 +19,12 @@ void loop() {
     thermocouples::read_all_temp_once();
     for (size_t i = 0; i < THERMOCOUPLES_NUM; i++)
     {
+      Serial.print("Temperature #");
+      Serial.print(i);
+      Serial.print(":       ");
       Serial.print(thermocouples::get_temp_celsius(i));
+      Serial.println(" \370");
+      
     } 
     delay(1000);
     receivedData = "";
@@ -29,7 +34,11 @@ void loop() {
     thermocouples::read_all_temp();
     for (size_t i = 0; i < THERMOCOUPLES_NUM; i++)
     {
+      Serial.print("Temperature #");
+      Serial.print(i);
+      Serial.print(":       ");
       Serial.print(thermocouples::get_temp_celsius(i));
+      Serial.println(" \370");
     } 
     delay(1000);
   }
