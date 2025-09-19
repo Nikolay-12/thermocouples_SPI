@@ -63,7 +63,7 @@ namespace MAX6675
     digitalWrite(NANO_CLK_PIN, HIGH);
   }
 
-  float readCelsius() 
+  double readCelsius() 
   {
     uint16_t v;
     
