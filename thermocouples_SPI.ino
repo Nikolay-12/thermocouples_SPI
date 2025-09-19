@@ -1,4 +1,4 @@
-#include <src/thermocouples.h>
+#include "src/thermocouples.h"
 
 void setup() {
   Serial.begin(9600);
