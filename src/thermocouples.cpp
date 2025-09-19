@@ -61,7 +61,7 @@ namespace thermocouples
     74HC595::set_11111111_in_reg();
   }
 
-  float get_temp_celsius(thermocouple_index)
+  double get_temp_celsius(thermocouple_index)
   {  
     if (thermocouple_index >= THERMOCOUPLES_NUM) return NAN;
     return instances[i].temp_celsius;
