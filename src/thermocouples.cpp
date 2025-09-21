@@ -51,6 +51,7 @@ namespace thermocouples
         HC595::shift_bit_in_reg();
         HC595::save_data_in_reg();
         instances[i].temp_celsius = MAX6675::readCelsius();
+      }
     }
   }
   void read_temp_from_one_thermocouple(uint8_t thermocouple_index) 
