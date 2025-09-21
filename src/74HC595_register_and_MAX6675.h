@@ -1,7 +1,5 @@
 #pragma once
 
-#include <SPI.h>
-
 #define NANO_CLK_PIN 13 // Пин SCK термопар
 #define NANO_MISO_PIN 12 // ПИН MISO термопар
 #define HC595_DS_PIN 2 // Пин данных для сдвиговых регистов ("путешествующий ноль")
