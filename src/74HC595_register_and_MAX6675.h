@@ -6,7 +6,7 @@
 #define HC595_STcp_PIN 3 // Пин для защелкивания выходов сдвиговых регистов
 #define HC595_SHcp_PIN 4 // Пин тактовых импульсов для сдвиговых регистов
 
-namespace 74HC595
+namespace register_74HC595
 {
   void setting_up_reg_pins();
   void set_bit_on_DS_pin(bool bit);
@@ -17,7 +17,7 @@ namespace 74HC595
   void shift_and_save_0_in_reg();
 }
 
-namespace MAX6675
+namespace 4MAX6675
 {
   void setting_pin_values_for_SPI();
   double readCelsius();
