@@ -9,7 +9,7 @@
 namespace 74HC595
 {
   void setting_up_reg_pins();
-  void set_bit_on_DS_pin(bit);
+  void set_bit_on_DS_pin(bool bit);
   void shift_bit_in_reg();
   void save_data_in_reg();
   void set_11111111_in_reg();
