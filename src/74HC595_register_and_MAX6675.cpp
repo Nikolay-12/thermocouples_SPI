@@ -13,7 +13,7 @@ namespace 74HC595
     digitalWrite(HC595_SHcp_PIN, LOW);
   }
 
-  void set_bit_on_DS_pin(bit)
+  void set_bit_on_DS_pin(bool bit)
   {
     digitalWrite(HC595_DS_PIN, bit);
     delayMicroseconds(10);
