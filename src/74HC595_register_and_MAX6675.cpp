@@ -1,7 +1,7 @@
 #include "74HC595_register_and_MAX6675.h"
 #include <SPI.h>
 
-namespace 74HC595_reg
+namespace register_74HC595
 {
   void setting_up_reg_pins()
   {
@@ -55,7 +55,7 @@ namespace 74HC595_reg
   }
 }
 
-namespace MAX6675_thermo
+namespace thermocouple_MAX6675
 {
   void setting_pin_values_for_SPI()
   {
