@@ -17,7 +17,7 @@ namespace register_74HC595
   void shift_and_save_0_in_reg();
 }
 
-namespace 4MAX6675
+namespace thermocouple_MAX6675
 {
   void setting_pin_values_for_SPI();
   double readCelsius();
