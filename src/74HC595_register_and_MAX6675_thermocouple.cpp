@@ -1,4 +1,4 @@
-#include "74HC595_register_and_MAX6675.h"
+#include "74HC595_register_and_MAX6675_thermocouple.h"
 #include <SPI.h>
 
 namespace register_74HC595
