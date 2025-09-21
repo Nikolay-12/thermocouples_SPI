@@ -1,5 +1,6 @@
 #pragma once
 
+#include "74HC595_register_and_MAX6675_thermocouple.h"
 #define THERMOCOUPLES_NUM 8
 
 namespace thermocouples
