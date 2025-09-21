@@ -35,7 +35,7 @@ namespace register_74HC595
 
   void set_11111111_in_reg()
   {
-    for (int i = 1; i <= 8; i++) {
+    for (size_t i = 1; i <= 8; i++) {
       void set_bit_on_DS_pin(HIGH);
       void shift_bit_in_reg();
     }
