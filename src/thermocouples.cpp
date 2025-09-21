@@ -67,6 +67,6 @@ namespace thermocouples
   double get_temp_celsius(uint8_t thermocouple_index)
   {  
     if (thermocouple_index >= THERMOCOUPLES_NUM) return NAN;
-    return instances[i].temp_celsius;
+    return instances[thermocouple_index].temp_celsius;
   }
 }
