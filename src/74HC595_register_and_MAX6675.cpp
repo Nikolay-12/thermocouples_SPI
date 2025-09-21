@@ -1,7 +1,7 @@
 #include "74HC595_register_and_MAX6675.h"
 #include <SPI.h>
 
-namespace 74HC595
+namespace 74HC595_reg
 {
   void setting_up_reg_pins()
   {
